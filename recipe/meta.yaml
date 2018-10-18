@@ -12,7 +12,7 @@ source:
   sha256: 07501608a2e79b20940cd0e22aca9db6150942eed5b6dad184ec957e153d8e63
 
 build:
-  number: 0
+  number: 1
   script: R CMD INSTALL --build .
   skip: True  # [win32]
   rpaths:
@@ -46,4 +46,5 @@ about:
 
 extra:
   recipe-maintainers:
+    - dpryan79
     - ocefpaf
