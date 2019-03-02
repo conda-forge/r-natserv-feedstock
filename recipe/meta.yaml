@@ -47,6 +47,7 @@ about:
   summary: Interface to 'NatureServe' (<http://www.natureserve.org>). Includes methods to get
     data, image metadata, search taxonomic names, and make maps.
   license_family: MIT
+  license_file: LICENSE
 
 extra:
   recipe-maintainers:
