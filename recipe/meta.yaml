@@ -1,50 +1,79 @@
-{% set version = '0.1.4' %}
+{% set version = '0.3.0' %}
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-natserv
-  version: {{ version }}
+  version: {{ version|replace("-", "_") }}
 
 source:
-  fn: natserv_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/natserv_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/natserv/natserv_{{ version }}.tar.gz
-  sha256: 07501608a2e79b20940cd0e22aca9db6150942eed5b6dad184ec957e153d8e63
+    - {{ cran_mirror }}/src/contrib/natserv_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/natserv/natserv_{{ version }}.tar.gz
+  sha256: 3c207d45bbba75dfd16f40d6eaaac122e40b3d3ca05b3b98aa8ed3c092638e5e
 
 build:
+  merge_build_host: True  # [win]
+  number: 0
   noarch: generic
-  number: 1001
-  script: R CMD INSTALL --build .
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
+    - {{posix}}zip               # [win]
+  host:
     - r-base
-    - r-crul >=0.2.0
-    - r-data.table >=1.10.0
-    - r-tibble >=1.2
-    - r-xml2 >=1.0.0
+    - r-crul >=0.7.0
+    - r-data.table >=1.12.0
+    - r-tibble >=2.0.1
+    - r-xml2 >=1.2.0
   run:
     - r-base
-    - r-crul >=0.2.0
-    - r-data.table >=1.10.0
-    - r-tibble >=1.2
-    - r-xml2 >=1.0.0
+    - r-crul >=0.7.0
+    - r-data.table >=1.12.0
+    - r-tibble >=2.0.1
+    - r-xml2 >=1.2.0
 
 test:
   commands:
-    - $R -e "library('natserv')"  # [not win]
+    - $R -e "library('natserv')"           # [not win]
     - "\"%R%\" -e \"library('natserv')\""  # [win]
 
 about:
-  home: https://cran.r-project.org/web/packages/natserv
+  home: https://github.com/ropensci/natserv
   license: MIT
-  license_file: LICENSE
-  summary: Interface to 'NatureServe'
+  summary: Interface to 'NatureServe' (<http://www.natureserve.org>). Includes methods to get
+    data, image metadata, search taxonomic names, and make maps.
+  license_family: MIT
 
 extra:
   recipe-maintainers:
-    - dpryan79
-    - ocefpaf
+    - conda-forge/r
+
+# Package: natserv
+# Title: 'NatureServe' Interface
+# Description: Interface to 'NatureServe' (<http://www.natureserve.org>). Includes methods to get data, image metadata, search taxonomic names, and make maps.
+# Version: 0.3.0
+# License: MIT + file LICENSE
+# URL: https://github.com/ropensci/natserv
+# BugReports: https://github.com/ropensci/natserv/issues
+# Authors@R: person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus@gmail.com", comment = c(ORCID="0000-0003-1444-9135") )
+# LazyData: true
+# VignetteBuilder: knitr
+# Language: en-US
+# Encoding: UTF-8
+# Depends: R(>= 3.2.1)
+# Imports: crul (>= 0.7.0), xml2 (>= 1.2.0), tibble (>= 2.0.1), data.table (>= 1.12.0)
+# Suggests: testthat, knitr, ggplot2, maps, mapproj, vcr
+# RoxygenNote: 6.1.1
+# X-schema.org-applicationCategory: Taxonomy
+# X-schema.org-keywords: taxonomy, species, API, web-services, NatureServe, metadata, maps
+# X-schema.org-isPartOf: https://ropensci.org
+# NeedsCompilation: no
+# Packaged: 2019-01-23 03:14:10 UTC; sckott
+# Author: Scott Chamberlain [aut, cre] (<https://orcid.org/0000-0003-1444-9135>)
+# Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>
+# Repository: CRAN
+# Date/Publication: 2019-01-23 06:50:03 UTC
