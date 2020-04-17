@@ -1,4 +1,4 @@
-{% set version = '0.3.0' %}
+{% set version = "0.4.0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/natserv_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/natserv/natserv_{{ version }}.tar.gz
-  sha256: 3c207d45bbba75dfd16f40d6eaaac122e40b3d3ca05b3b98aa8ed3c092638e5e
+  sha256: ba7ef96290b4713e46197cc872d5400710086dc3668717d67995ee3de3d19c87
 
 build:
-  merge_build_host: True  # [win]
-  number: 2
+  merge_build_host: true  # [win]
+  number: 0
   noarch: generic
   rpaths:
     - lib/R/lib/
@@ -44,13 +44,12 @@ test:
 about:
   home: https://github.com/ropensci/natserv
   license: MIT
-  summary: Interface to 'NatureServe' (<http://www.natureserve.org>). Includes methods to get
-    data, image metadata, search taxonomic names, and make maps.
+  summary: Interface to 'NatureServe' (<http://www.natureserve.org>). Includes methods to get data, image metadata, search taxonomic names, and make maps.
   license_family: MIT
-  license_file: 
-    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/MIT'
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/MIT
     - LICENSE
-    
+
 extra:
   recipe-maintainers:
     - conda-forge/r
