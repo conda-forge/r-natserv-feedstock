@@ -1,11 +1,11 @@
-About r-natserv
-===============
+About r-natserv-feedstock
+=========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-natserv-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/ropensci/natserv
 
 Package license: MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-natserv-feedstock/blob/main/LICENSE.txt)
 
 Summary: Interface to 'NatureServe' (<http://www.natureserve.org>). Includes methods to get data, image metadata, search taxonomic names, and make maps.
 
